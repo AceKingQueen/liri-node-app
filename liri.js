@@ -48,13 +48,19 @@ for (var i = 2; i < nodeArgs.length; i++) {
 //communication with OMDB API
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
 
-console.log(queryUrl);
-
 request(queryUrl, function(error, response, body) {
 
     if(!error && response.statusCode === 200) {
 
-        console.log(JSON.parse(body));
+    console.log("Title: " + JSON.parse(body).Title);
+    console.log("Year Released: " + JSON.parse(body).Year);
+    console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+    // console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings.Source);
+    console.log("Country where produced: " + JSON.parse(body).Country);   
+    console.log("Language: " + JSON.parse(body).Language); 
+    console.log("Plot: " + JSON.parse(body).Plot);  
+    console.log("Actors: " + JSON.parse(body).Actors);      
+    // console.log(JSON.parse(body));    
     }
 })
 
