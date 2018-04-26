@@ -1,15 +1,24 @@
-// require("dotenv").config();
+require("dotenv").config();
 
-// var Twitter = require('twitter');
+var Twitter = require('twitter');
 // var Spotify = require('node-spotify-api');
 var request = require("request");
 
-// var bringIn = require("./keys.js");
+var keys = require("./keys.js");
 
+var client = new Twitter(keys.twitter);
 // var spotify = new Spotify(keys.spotify);
-// var client = new Twitter(keys.twitter);
+
 
 //===========Twitter=================
+var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=20"
+
+
+client.get(tweeted, function(error, tweets, response) {
+    if(error) throw error;
+    console.log(tweets);
+    console.log(response);
+})
 /*
 my-tweets : shows last 20 tweets
 
@@ -26,43 +35,43 @@ default Ace of Base "I saw the sign"
 //==========Movies===================
 
 //all arguments in array stored to variable
-var nodeArgs = process.argv;
+// var nodeArgs = process.argv;
 
 //empty variable for holding entered movie name
-var movieName = "";
+// var movieName = "";
 
 //we need to account for movies that have more than one word in the title
-for (var i = 2; i < nodeArgs.length; i++) {
+// for (var i = 2; i < nodeArgs.length; i++) {
     
-    if (i > 2 && i < nodeArgs.length) {
+//     if (i > 2 && i < nodeArgs.length) {
 
-        movieName = movieName + "+" + nodeArgs[i];
+//         movieName = movieName + "+" + nodeArgs[i];
 
-    } else {
+//     } else {
 
-        movieName += nodeArgs[i];
-    }
+//         movieName += nodeArgs[i];
+//     }
 
-}
+// }
 
 //communication with OMDB API
-var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
+// var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
 
-request(queryUrl, function(error, response, body) {
+// request(queryUrl, function(error, response, body) {
 
-    if(!error && response.statusCode === 200) {
+//     if(!error && response.statusCode === 200) {
 
-    console.log("Title: " + JSON.parse(body).Title);
-    console.log("Year Released: " + JSON.parse(body).Year);
-    console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+//     console.log("Title: " + JSON.parse(body).Title);
+//     console.log("Year Released: " + JSON.parse(body).Year);
+//     console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
     // console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings.Source);
-    console.log("Country where produced: " + JSON.parse(body).Country);   
-    console.log("Language: " + JSON.parse(body).Language); 
-    console.log("Plot: " + JSON.parse(body).Plot);  
-    console.log("Actors: " + JSON.parse(body).Actors);      
+    // console.log("Country where produced: " + JSON.parse(body).Country);   
+    // console.log("Language: " + JSON.parse(body).Language); 
+    // console.log("Plot: " + JSON.parse(body).Plot);  
+    // console.log("Actors: " + JSON.parse(body).Actors);      
     // console.log(JSON.parse(body));    
-    }
-})
+//     }
+// })
 
 /*
 movie-this : 
