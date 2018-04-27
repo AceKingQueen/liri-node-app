@@ -12,46 +12,75 @@ var spotify = new Spotify(keys.spotify);
 
 //===========Switch statement==========
 
+// console.log(process.argv[2])
+// console.log(process.argv[3])
+
+var input = process.argv[2]
+
+switch (input) {
+    case "movie-this":
+        movieThis();
+        break;
+    case "my-tweets":
+        myTweets();
+        break;
+    case "spotify-this-song":
+        spotifyThis();   
+        break;
+    case "do-what-it-says":
+        doIt();   
+        break;  
+    default:
+    console.log("Sorry please try again");    
+        break;
+}
 
 //===========my-tweets=================
-// var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
+function myTweets() {
+
+var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
 
 
-// client.get(tweeted, function(error, tweets, response) {
-//     if(error) throw error;
-//     console.log(tweets.statuses[0].created_at);
-//     console.log(tweets.statuses[0].text);
+client.get(tweeted, function(error, tweets, response) {
+    if(error) throw error;
+    console.log(tweets.statuses[0].created_at);
+    console.log(tweets.statuses[0].text);
 
-// })
-
+})
+}
 //==========spotify-this-song=================
+function spotifyThis() {
 
-// var muzak = "bad"
+var muzak = "bad"
 
-// spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     }
+spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
    
-//   //artist  
-//   console.log(data.tracks.items[0].artists[0].name); 
+  //artist  
+  console.log(data.tracks.items[0].artists[0].name); 
 
-//   //track name
-//   console.log(data.tracks.items[0].name); 
+  //track name
+  console.log(data.tracks.items[0].name); 
 
-//   //album name
-//   console.log(data.tracks.items[0].album.name);
+  //album name
+  console.log(data.tracks.items[0].album.name);
 
-//   //30 preview link of the song
-//   console.log(data.tracks.items[0].preview_url);
-//   });
+  //30 preview link of the song
+  console.log(data.tracks.items[0].preview_url);
+  });
+}
+
 
 //default Ace of Base "I saw the sign"
 
 //==========movie-this===================
 
+function movieThis() {
+
 // all arguments in array stored to variable
-var nodeArgs = process.argv;
+var nodeArgs = process.argv[3];
 
 // empty variable for holding entered movie name
 var movieName = "";
@@ -67,7 +96,6 @@ for (var i = 2; i < nodeArgs.length; i++) {
 
         movieName += nodeArgs[i];
     }
-
 }
 
 // communication with OMDB API
@@ -103,20 +131,22 @@ request(queryUrl, function(error, response, body) {
     // console.log(JSON.parse(body));    
     }
 })
-
+}
 //default "Mr. Nobody"
 
 
 //===========do-what-it-says===========
+function doIt() {
 
-//read from the accompanying "random.txt" file
-// fs.readFile("random.txt", "utf8", function(error, data) {
+// read from the accompanying "random.txt" file
+fs.readFile("random.txt", "utf8", function(error, data) {
 
-// if (error) {
-//     return console.log(error);
-// } 
+if (error) {
+    return console.log(error);
+} 
 
-// //print the .txt file to the console
-// console.log(data);
+//print the .txt file to the console
+console.log(data);
 
-// })
+})
+}
