@@ -11,100 +11,101 @@ var client = new Twitter(keys.twitter);
 var spotify = new Spotify(keys.spotify);
 
 
-//===========Twitter=================
-// var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
+//===========my-tweets=================
+var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
 
 
-// client.get(tweeted, function(error, tweets, response) {
-//     if(error) throw error;
-//     console.log(tweets.statuses[0].created_at);
-//     console.log(tweets.statuses[0].text);
+client.get(tweeted, function(error, tweets, response) {
+    if(error) throw error;
+    console.log(tweets.statuses[0].created_at);
+    console.log(tweets.statuses[0].text);
 
-// })
+})
 
-// my-tweets : shows last 20 tweets
+//==========spotify-this-song=================
 
-//==========Spotify=================
+var muzak = "bad"
 
-// var muzak = "bad"
-
-// spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     }
+spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
    
-//   console.log(data.tracks.items[0].artists[0].name); 
-//   console.log(data.tracks.items[0].name); 
-//   console.log(data.tracks.items[0].album.name);
-//   console.log(data.tracks.items[0].preview_url);
-//   });
+  //artist  
+  console.log(data.tracks.items[0].artists[0].name); 
 
+  //track name
+  console.log(data.tracks.items[0].name); 
 
+  //album name
+  console.log(data.tracks.items[0].album.name);
 
-/*
-spotify-this-song : 
-artist
-song name
-preview link of song
-album
+  //30 preview link of the song
+  console.log(data.tracks.items[0].preview_url);
+  });
 
-default Ace of Base "I saw the sign"
+//default Ace of Base "I saw the sign"
 
-*/
-//==========Movies===================
+//==========movie-this===================
 
-//all arguments in array stored to variable
-// var nodeArgs = process.argv;
+// all arguments in array stored to variable
+var nodeArgs = process.argv;
 
-//empty variable for holding entered movie name
-// var movieName = "";
+// empty variable for holding entered movie name
+var movieName = "";
 
-//we need to account for movies that have more than one word in the title
-// for (var i = 2; i < nodeArgs.length; i++) {
+// we need to account for movies that have more than one word in the title
+for (var i = 2; i < nodeArgs.length; i++) {
     
-//     if (i > 2 && i < nodeArgs.length) {
+    if (i > 2 && i < nodeArgs.length) {
 
-//         movieName = movieName + "+" + nodeArgs[i];
+        movieName = movieName + "+" + nodeArgs[i];
 
-//     } else {
+    } else {
 
-//         movieName += nodeArgs[i];
-//     }
+        movieName += nodeArgs[i];
+    }
 
-// }
+}
 
-//communication with OMDB API
-// var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
+// communication with OMDB API
+var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
 
-// request(queryUrl, function(error, response, body) {
+request(queryUrl, function(error, response, body) {
 
-//     if(!error && response.statusCode === 200) {
+    if(!error && response.statusCode === 200) {
 
-//     console.log("Title: " + JSON.parse(body).Title);
-//     console.log("Year Released: " + JSON.parse(body).Year);
-//     console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-    // console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings.Source);
-    // console.log("Country where produced: " + JSON.parse(body).Country);   
-    // console.log("Language: " + JSON.parse(body).Language); 
-    // console.log("Plot: " + JSON.parse(body).Plot);  
-    // console.log("Actors: " + JSON.parse(body).Actors);      
-    // console.log(JSON.parse(body));    
-//     }
-// })
+    // Title of the movie.    
+    console.log("Title: " + JSON.parse(body).Title);
 
-/*
-movie-this : 
-  * Title of the movie.
-  * Year the movie came out.
-  * IMDB Rating of the movie.
-  * Rotten Tomatoes Rating of the movie.
-  * Country where the movie was produced.
-  * Language of the movie.
-  * Plot of the movie.
-  * Actors in the movie.
+    // Year the movie was released. 
+    console.log("Year Released: " + JSON.parse(body).Year);
 
-default "Mr. Nobody"
-//===========do-what-it-says===========*/
+    // IMDB Rating of the movie.
+    console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+
+    // Rotten Tomatoes Rating of the movie.    
+    console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings.Source);
+
+    // Country where the movie was produced.
+    console.log("Country where produced: " + JSON.parse(body).Country);   
+
+    // Language of the movie.
+    console.log("Language: " + JSON.parse(body).Language); 
+
+    // Plot of the movie
+    console.log("Plot: " + JSON.parse(body).Plot); 
+    
+    // Actors in the movie
+    console.log("Actors: " + JSON.parse(body).Actors);      
+    console.log(JSON.parse(body));    
+    }
+})
+
+//default "Mr. Nobody"
+
+
+//===========do-what-it-says===========
 
 //read from the accompanying "random.txt" file
 fs.readFile("random.txt", "utf8", function(error, data) {
