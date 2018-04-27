@@ -15,9 +15,9 @@ var spotify = new Spotify(keys.spotify);
 // console.log(process.argv[2])
 // console.log(process.argv[3])
 
-var input = process.argv[2]
+var inputAfterLiri = process.argv[2]
 
-switch (input) {
+switch (inputAfterLiri) {
     case "movie-this":
         movieThis();
         break;
@@ -31,7 +31,7 @@ switch (input) {
         doIt();   
         break;  
     default:
-    console.log("Sorry please try again");    
+    console.log("Sorry please enter one of these options: \n* 'movie-this' followed by a movie title \n* 'my-tweets' \n* 'spotify-this-song' followed by a song title \n* or 'do-what-it-says'");    
         break;
 }
 
@@ -51,7 +51,7 @@ client.get(tweeted, function(error, tweets, response) {
 //==========spotify-this-song=================
 function spotifyThis() {
 
-var muzak = "bad"
+var muzak = "pastime paradise"
 
 spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
     if (err) {
