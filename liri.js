@@ -11,13 +11,14 @@ var client = new Twitter(keys.twitter);
 
 
 //===========Twitter=================
-var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=20"
+var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
 
 
 client.get(tweeted, function(error, tweets, response) {
     if(error) throw error;
-    console.log(tweets);
-    console.log(response);
+    console.log(tweets.statuses[0].created_at);
+    console.log(tweets.statuses[0].text);
+
 })
 /*
 my-tweets : shows last 20 tweets
