@@ -1,29 +1,43 @@
 require("dotenv").config();
 
 var Twitter = require('twitter');
-// var Spotify = require('node-spotify-api');
+var Spotify = require('node-spotify-api');
 var request = require("request");
 
 var keys = require("./keys.js");
 
 var client = new Twitter(keys.twitter);
-// var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
 
 
 //===========Twitter=================
-var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
+// var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
 
 
-client.get(tweeted, function(error, tweets, response) {
-    if(error) throw error;
-    console.log(tweets.statuses[0].created_at);
-    console.log(tweets.statuses[0].text);
+// client.get(tweeted, function(error, tweets, response) {
+//     if(error) throw error;
+//     console.log(tweets.statuses[0].created_at);
+//     console.log(tweets.statuses[0].text);
 
-})
-/*
-my-tweets : shows last 20 tweets
+// })
+
+// my-tweets : shows last 20 tweets
 
 //==========Spotify=================
+
+var muzak = "cheap thrills"
+
+spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
+   
+  console.log(data.tracks.items[0].artists[0].name); 
+  });
+
+
+
+/*
 spotify-this-song : 
 artist
 song name
