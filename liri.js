@@ -33,6 +33,9 @@ spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
     }
    
   console.log(data.tracks.items[0].artists[0].name); 
+  console.log(data.tracks.items[0].name); 
+  console.log(data.tracks.items[0].album.name);
+  console.log(data.tracks.items[0].preview_url);
   });
 
 
