@@ -3,6 +3,7 @@ require("dotenv").config();
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
 var request = require("request");
+var fs = require("fs");
 
 var keys = require("./keys.js");
 
@@ -25,18 +26,18 @@ var spotify = new Spotify(keys.spotify);
 
 //==========Spotify=================
 
-var muzak = "cheap thrills"
+// var muzak = "bad"
 
-spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
-    if (err) {
-      return console.log('Error occurred: ' + err);
-    }
+// spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
+//     if (err) {
+//       return console.log('Error occurred: ' + err);
+//     }
    
-  console.log(data.tracks.items[0].artists[0].name); 
-  console.log(data.tracks.items[0].name); 
-  console.log(data.tracks.items[0].album.name);
-  console.log(data.tracks.items[0].preview_url);
-  });
+//   console.log(data.tracks.items[0].artists[0].name); 
+//   console.log(data.tracks.items[0].name); 
+//   console.log(data.tracks.items[0].album.name);
+//   console.log(data.tracks.items[0].preview_url);
+//   });
 
 
 
@@ -103,7 +104,16 @@ movie-this :
   * Actors in the movie.
 
 default "Mr. Nobody"
-//===========Do what it says===========
-do-what-it-says
-*/
+//===========do-what-it-says===========*/
 
+//read from the accompanying "random.txt" file
+fs.readFile("random.txt", "utf8", function(error, data) {
+
+if (error) {
+    return console.log(error);
+} 
+
+//print the .txt file to the console
+console.log(data);
+
+})
