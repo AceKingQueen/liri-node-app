@@ -51,7 +51,7 @@ client.get(tweeted, function(error, tweets, response) {
 //==========spotify-this-song=================
 function spotifyThis() {
 
-var muzak = "pastime paradise"
+var muzak = "hurt"
 
 spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
     if (err) {
@@ -80,15 +80,15 @@ spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
 function movieThis() {
 
 // all arguments in array stored to variable
-var nodeArgs = process.argv[3];
+var nodeArgs = process.argv;
 
 // empty variable for holding entered movie name
 var movieName = "";
 
 // we need to account for movies that have more than one word in the title
-for (var i = 2; i < nodeArgs.length; i++) {
+for (var i = 3; i < nodeArgs.length; i++) {
     
-    if (i > 2 && i < nodeArgs.length) {
+    if (i > 3 && i < nodeArgs.length) {
 
         movieName = movieName + "+" + nodeArgs[i];
 
@@ -97,6 +97,8 @@ for (var i = 2; i < nodeArgs.length; i++) {
         movieName += nodeArgs[i];
     }
 }
+console.log(movieName);
+console.log(nodeArgs);
 
 // communication with OMDB API
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
