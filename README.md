@@ -3,7 +3,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 ###To Start
 Choose from one of these 4 LIRI commands:
 
-1) `my-tweets` will display the most recent 20 tweets from @playoffTimeNBA.
+1) `my-tweets` will display the most recent 20 tweets from [@playoffTimeNBA](https://twitter.com/playoffTimeNBA).
   > To interact with LIRI in the command line, simply type `node liri.js my-tweets` 
  
 2) `spotify-this-song` will display the artist, track, album name, and a link to a 30 second preview of the song.
