@@ -12,9 +12,6 @@ var spotify = new Spotify(keys.spotify);
 
 //===========Switch statement==========
 
-// console.log(process.argv[2])
-// console.log(process.argv[3])
-
 var inputAfterLiri = process.argv[2]
 
 switch (inputAfterLiri) {
@@ -51,9 +48,24 @@ client.get(tweeted, function(error, tweets, response) {
 //==========spotify-this-song=================
 function spotifyThis() {
 
-var muzak = "hurt"
+var muzak = process.argv;
 
-spotify.search({ type: 'track', query: muzak, limit: 5}, function(err, data) {
+var trackName = "";
+
+// we need to account for songs that have more than one word in the title
+for (var i = 3; i < muzak.length; i++) {
+    
+    if (i > 3 && i < muzak.length) {
+
+        trackName = trackName + "+" + muzak[i];
+
+    } else {
+
+        trackName += muzak[i];
+    }
+}
+
+spotify.search({ type: 'track', query: trackName, limit: 5}, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -97,8 +109,7 @@ for (var i = 3; i < nodeArgs.length; i++) {
         movieName += nodeArgs[i];
     }
 }
-console.log(movieName);
-console.log(nodeArgs);
+
 
 // communication with OMDB API
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
