@@ -36,30 +36,26 @@ switch (inputAfterLiri) {
 function myTweets() {
 
 //communication with Twitter API
-var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=5"
+var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=20"
 
 
 client.get(tweeted, function(error, tweets, response) {
     if(error) throw error;
 
+    //store all tweets coming back in this variable
     var allTweets = tweets.statuses;
-
-    // console.log(allTweets);
-     
+    
+    //for each tweet, show only the text of the tweet and when it was made
     allTweets.forEach(function(each) {
         console.log(each.text);
         console.log(each.created_at);
-
     });
-
-
-  
 
 })
 }
 //==========spotify-this-song=================
-function spotifyThis() {
 
+function spotifyThis() {
 
 //gather input     
 var muzak = process.argv;
@@ -103,6 +99,9 @@ spotify.search({ type: 'track', query: trackName, limit: 5}, function(err, data)
 //default Ace of Base "I saw the sign"
 
 //==========movie-this===================
+
+// var defaultMovie = process.argv;
+// defaultMovie = "Mr. Nobody";
 
 function movieThis() {
 
