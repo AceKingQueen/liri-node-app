@@ -12,6 +12,7 @@ var spotify = new Spotify(keys.spotify);
 //===========Switch statement==========
 
 var inputAfterLiri = process.argv[2]
+console.log(inputAfterLiri);
 
 switch (inputAfterLiri) {
     case "movie-this":
@@ -103,23 +104,29 @@ spotify.search({ type: 'track', query: trackName, limit: 5}, function(err, data)
 function movieThis() {
 
 // all arguments in array stored to variable
-var nodeArgs = process.argv;
-
+var nodeArgs = process.argv[3];
+var movieName;
 // empty variable for holding entered movie name
-var movieName = "";
+if (nodeArgs === undefined) {
+    movieName = "Mr. Nobody";
+} else {
+    movieName = nodeArgs;
+}
+
 
 // we need to account for movies that have more than one word in the title
-for (var i = 3; i < nodeArgs.length; i++) {
+// for (var i = 3; i < nodeArgs.length; i++) {
     
-    if (i > 3 && i < nodeArgs.length) {
+//     if (i > 3 && i < nodeArgs.length) {
 
-        movieName = movieName + "+" + nodeArgs[i];
+//         movieName = movieName + "+" + nodeArgs[i];
 
-    } else {
 
-        movieName += nodeArgs[i];
-    }
-}
+//     } else {
+
+//         movieName += nodeArgs[i];
+//     }
+// }
 
 // communication with OMDB API
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
