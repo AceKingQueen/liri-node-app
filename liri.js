@@ -4,7 +4,6 @@ var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
 var request = require("request");
 var fs = require("fs");
-
 var keys = require("./keys.js");
 
 var client = new Twitter(keys.twitter);
@@ -28,7 +27,7 @@ switch (inputAfterLiri) {
         doIt();   
         break;  
     default:
-    console.log("Sorry please enter one of these options: \n* 'movie-this' followed by a movie title \n* 'my-tweets' \n* 'spotify-this-song' followed by a song title \n* or 'do-what-it-says'");    
+    console.log("Sorry, please enter one of these options: \n* 'movie-this' followed by a movie title \n* 'my-tweets' \n* 'spotify-this-song' followed by a song title \n* or 'do-what-it-says'");    
         break;
 }
 
@@ -50,7 +49,6 @@ client.get(tweeted, function(error, tweets, response) {
         console.log(each.text);
         console.log(each.created_at);
     });
-
 })
 }
 //==========spotify-this-song=================
@@ -95,7 +93,6 @@ spotify.search({ type: 'track', query: trackName, limit: 5}, function(err, data)
   });
 }
 
-
 //default Ace of Base "I saw the sign"
 
 //==========movie-this===================
@@ -123,7 +120,6 @@ for (var i = 3; i < nodeArgs.length; i++) {
         movieName += nodeArgs[i];
     }
 }
-
 
 // communication with OMDB API
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy"
@@ -177,3 +173,15 @@ console.log(data);
 
 })
 }
+
+// //=============going for the bonus===========
+// var addToLog = "\nPast Liri commands: ";
+
+// var results = console.log();
+
+// var displayingLog = addToLog + results;
+
+// fs.appendFile("log.txt", displayingLog, function(err) {
+//     if(err) throw err;
+//     console.log("Here are the results of your search:");
+// })

@@ -1,0 +1,9 @@
+whatever it typedwhatever is typedwhatever is typed
+whatever is typed
+Past Liri commands 
+Past Liri commands: 
+Past Liri commands: function () { [native code] }
+Past Liri commands: undefined
+Past Liri commands: undefined
+Past Liri commands: undefined
+Past Liri commands: undefined
