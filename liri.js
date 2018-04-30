@@ -35,19 +35,33 @@ switch (inputAfterLiri) {
 //===========my-tweets=================
 function myTweets() {
 
-var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=1"
+//communication with Twitter API
+var tweeted = "https://api.twitter.com/1.1/search/tweets.json?q=PlayoffTimeNBA&count=5"
 
 
 client.get(tweeted, function(error, tweets, response) {
     if(error) throw error;
-    console.log(tweets.statuses[0].created_at);
-    console.log(tweets.statuses[0].text);
+
+    var allTweets = tweets.statuses;
+
+    // console.log(allTweets);
+     
+    allTweets.forEach(function(each) {
+        console.log(each.text);
+        console.log(each.created_at);
+
+    });
+
+
+  
 
 })
 }
 //==========spotify-this-song=================
 function spotifyThis() {
 
+
+//gather input     
 var muzak = process.argv;
 
 var trackName = "";
@@ -65,6 +79,7 @@ for (var i = 3; i < muzak.length; i++) {
     }
 }
 
+//communcation with Spotify API
 spotify.search({ type: 'track', query: trackName, limit: 5}, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
