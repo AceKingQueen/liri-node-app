@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AceKingQueen/liri-node-app#readme",
   "dependencies": {
+    "deep-extend": "^0.6.0",
     "dotenv": "^5.0.1",
     "node-spotify-api": "^1.0.7",
     "request": "^2.88.0",
